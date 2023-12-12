@@ -113,9 +113,10 @@ def refresh_database(config):
 # Startpage Functions
 #
 def set_startpage_wallpaper(config):
-    wdb.set_startpage(
+    new_wall = wdb.set_startpage(
         config.database_path, config.exclude["startpage"], config.startpage_background
     )
+    print(f"Startpage set!\n{new_wall}")
 
 
 def print_startpage_info(config):

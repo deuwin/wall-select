@@ -324,7 +324,7 @@ def set_startpage(database_path, exclusions, startpage_background):
                 db.wallpapers[wall_new].startpage_used = True
                 db.startpage.current = wall_path
                 db.startpage.updated_at = datetime.now()
-                return True
+                return wall_path
             else:
                 walls_unused.remove(wall_new)
                 warnings.warn(
@@ -351,8 +351,8 @@ def set_startpage(database_path, exclusions, startpage_background):
         ]
 
         for _ in range(2):
-            if _set_startpage():
-                break
+            if (new_wall := _set_startpage()):
+                return new_wall
             elif len(walls_unused) == 0:
                 # reached the end of the list so reset startpage_used
                 walls_unused = list(walls_included.keys())
